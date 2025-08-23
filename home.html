@@ -3,21 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Website Sederhana</title>
+    <title>Home - Hampers Direl's</title>
     <link rel="stylesheet" href="home.css">
 </head>
 <body>
-    <header>
-        <h1>Hampers Direl's</h1>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="home.html" class="logo">Hampers Direl's</a>
+            <ul class="nav-links">
+                <li><a href="#products">Produk</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#contact">Kontak</a></li>
+                <li><a href="login.html" class="admin-link">Login</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section class="hero">
-        <h1>Selamat Datang!</h1>
-        <p>Ini adalah contoh halaman home website yang simple dan responsif.</p>
-    </section>
+    <main>
+        <section class="hero-home">
+            <div class="hero-content">
+                <h1>Temukan Kado Spesial di Hampers Direl's</h1>
+                <p>Kami menyediakan berbagai pilihan hampers unik dan menawan untuk setiap momen istimewa Anda. </p>
+            </div>
+        </section>
 
-    <footer>
-        &copy; 2025 Website Sederhana. All Rights Reserved.
+        <section id="products" class="products-section">
+            <div class="container">
+                <h2>Produk Pilihan</h2>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/300" alt="Hampers Lebaran">
+                        <h3>Hampers Lebaran</h3>
+                        <p>Hampers kue kering, cookies, dan aneka snack spesial.</p>
+                        <a href="#" class="btn">Lihat Detail</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/300" alt="Hampers Ulang Tahun">
+                        <h3>Hampers Ulang Tahun</h3>
+                        <p>Kue dan cokelat dengan kemasan yang cantik.</p>
+                        <a href="#" class="btn">Lihat Detail</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/300" alt="Hampers Bayi">
+                        <h3>Hampers Bayi</h3>
+                        <p>Pakaian bayi, perlengkapan mandi, dan mainan lucu.</p>
+                        <a href="#" class="btn">Lihat Detail</a>
+                    </div>
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/300" alt="Hampers Wisuda">
+                        <h3>Hampers Wisuda</h3>
+                        <p>Buket bunga, boneka, dan makanan ringan.</p>
+                        <a href="#" class="btn">Lihat Detail</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Hampers Direl's. All Rights Reserved.</p>
     </footer>
 </body>
 </html>

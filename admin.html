@@ -9,87 +9,111 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', Arial, sans-serif;
         }
 
         body {
             display: flex;
             min-height: 100vh;
-            background: #f4f4f4;
+            background: #f0f2f5;
         }
 
         /* Sidebar */
         .sidebar {
-            width: 220px;
-            background: linear-gradient(135deg, white, #FF9898);
-            color: black;
+            width: 250px;
+            background: #ffffff;
+            color: #333;
             display: flex;
             flex-direction: column;
-            padding: 20px 0;
+            padding: 20px;
             position: fixed;
             height: 100%;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
         }
 
         .sidebar h2 {
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 1.4em;
+            margin-bottom: 40px;
+            font-size: 1.6em;
+            color: #FF69B4;
+            font-weight: 700;
         }
 
         .sidebar a {
             padding: 15px 20px;
-            color: black;
+            color: #555;
             text-decoration: none;
             display: block;
-            transition: background 0.3s;
+            border-radius: 8px;
+            transition: background 0.3s, color 0.3s;
         }
 
         .sidebar a:hover {
-            background: #FF9898;
+            background: #FFB6C1;
+            color: #333;
         }
 
-        /* Konten utama */
+        .sidebar a.active {
+            background: #FF69B4;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        /* Main Content */
         .content {
-            margin-left: 220px;
+            margin-left: 250px;
             flex: 1;
-            padding: 20px;
+            padding: 40px;
         }
 
         .content h1 {
-            margin-bottom: 20px;
-            font-size: 1.8em;
-            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
         }
 
         .card-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
         }
 
         .card {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
             text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
         }
 
         .card h2 {
             margin-bottom: 10px;
-            color: #2E7D32;
+            color: #FF69B4;
+            font-size: 1.5em;
+        }
+
+        .card p {
+            color: #777;
         }
 
         .logout {
             margin-top: auto;
             text-align: center;
-            padding: 15px;
+            padding-top: 20px;
         }
 
         .logout a {
-            background: #c62828;
-            padding: 10px 20px;
-            border-radius: 20px;
+            background: #C82828;
+            padding: 12px 25px;
+            border-radius: 30px;
             text-decoration: none;
             color: white;
             font-weight: bold;
@@ -100,17 +124,35 @@
             background: #b71c1c;
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
             .sidebar {
                 position: relative;
                 width: 100%;
                 height: auto;
                 flex-direction: row;
                 justify-content: space-around;
+                padding: 10px;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            }
+            .sidebar h2 {
+                display: none;
+            }
+            .sidebar a {
+                padding: 10px;
+                flex: 1;
+                text-align: center;
             }
             .content {
                 margin-left: 0;
                 margin-top: 20px;
+                padding: 20px;
+            }
+            .logout {
+                display: none;
             }
         }
     </style>
@@ -118,6 +160,7 @@
 <body>
     <div class="sidebar">
         <h2>Admin Panel</h2>
+        <a href="#" class="active">Dashboard</a>
         <a href="#">Riwayat Pesanan</a>
         <a href="#">Pesanan Masuk</a>
         <a href="#">Tambah Barang</a>
