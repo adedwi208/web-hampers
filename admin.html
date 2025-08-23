@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Admin</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            background: #f4f4f4;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 220px;
+            background: linear-gradient(135deg, white, #FF9898);
+            color: black;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            position: fixed;
+            height: 100%;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.4em;
+        }
+
+        .sidebar a {
+            padding: 15px 20px;
+            color: black;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #FF9898;
+        }
+
+        /* Konten utama */
+        .content {
+            margin-left: 220px;
+            flex: 1;
+            padding: 20px;
+        }
+
+        .content h1 {
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: #333;
+        }
+
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .card h2 {
+            margin-bottom: 10px;
+            color: #2E7D32;
+        }
+
+        .logout {
+            margin-top: auto;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .logout a {
+            background: #c62828;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .logout a:hover {
+            background: #b71c1c;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                height: auto;
+                flex-direction: row;
+                justify-content: space-around;
+            }
+            .content {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <a href="#">Riwayat Pesanan</a>
+        <a href="#">Pesanan Masuk</a>
+        <a href="#">Tambah Barang</a>
+        <a href="#">Data Pelanggan</a>
+        <div class="logout">
+            <a href="home.html">Logout</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Dashboard Admin</h1>
+        <div class="card-container">
+            <div class="card">
+                <h2>Riwayat Pesanan</h2>
+                <p>Melihat daftar pesanan yang sudah diproses.</p>
+            </div>
+            <div class="card">
+                <h2>Pesanan Masuk</h2>
+                <p>Daftar pesanan yang baru diterima.</p>
+            </div>
+            <div class="card">
+                <h2>Tambah Barang</h2>
+                <p>Menambahkan produk baru ke sistem.</p>
+            </div>
+            <div class="card">
+                <h2>Data Pelanggan</h2>
+                <p>Melihat dan mengelola informasi pelanggan.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
