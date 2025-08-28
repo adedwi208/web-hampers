@@ -1,8 +1,8 @@
 const sequelize = require("./db");
 const User = require("./user");
 const Produk = require("./produk");
-const Pesanan = require("./Pesanan");
-const PesananItem = require("./PesananItem");
+const Pesanan = require("./pesanan");
+const PesananItem = require("./pesananitem");
 const Keranjang = require("./keranjang");
 
 // Relasi User ↔ Pesanan
