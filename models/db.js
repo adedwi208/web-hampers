@@ -1,32 +1,25 @@
-const { Sequelize } = require("sequelize");
+const mysql = require('mysql2/promise');
+require("dotenv").config();
 
-let sequelize;
+const pool = mysql.createPool({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
+});
 
-if (process.env.DATABASE_URL) {
-  // ✅ Railway style (DATABASE_URL langsung)
-  sequelize = new Sequelize(process.env.DATABASE_URL, {
-    dialect: "mysql",
-    logging: false,
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false, // biar aman di Railway
-      },
-    },
-  });
-} else {
-  // ✅ Local dev style (pakai DB_HOST, DB_USER, DB_PASS, DB_NAME)
-  sequelize = new Sequelize(
-    process.env.DB_NAME || "hampers_db",
-    process.env.DB_USER || "root",
-    process.env.DB_PASS || "",
-    {
-      host: process.env.DB_HOST || "localhost",
-      port: process.env.DB_PORT || 3306,  // ✅ tambahin port
-      dialect: "mysql",
-      logging: false,
-    }
-  );
+async function testConnection() {
+  try {
+    const connection = await pool.getConnection();
+    console.log("✅ Koneksi database berhasil!");
+    connection.release(); // Lepaskan koneksi kembali ke pool
+  } catch (err) {
+    console.error("❌ Koneksi database gagal:", err);
+    // Berhenti jika koneksi gagal untuk mencegah error lebih lanjut
+    process.exit(1); 
+  }
 }
 
-module.exports = sequelize;
+testConnection();
+
+module.exports = pool;
