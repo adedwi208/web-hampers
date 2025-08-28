@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const path = require("path");
 const multer = require('multer');
+const { sequelize } = require("./models");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -36,6 +37,11 @@ app.get("/", (req, res) => {
 
 // test API
 app.get("/api/health", (req, res) => res.json({ ok: true }));
+
+
+sequelize.sync({ alter: true }) // alter: true biar auto update tabel
+  .then(() => console.log("✅ Database synced"))
+  .catch(err => console.error("❌ DB Error:", err));
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
