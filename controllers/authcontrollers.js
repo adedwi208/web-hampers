@@ -68,10 +68,11 @@ exports.login = async (req, res) => {
 
     // buat JWT token dengan role
     const token = jwt.sign(
-      { id: user.id, email: user.email, role: user.role },
-      process.env.JWT_SECRET || "rahasia_super",
-      { expiresIn: "8h" }
-    );
+  { id: user.id, email: user.email, role: user.role },
+  process.env.JWT_SECRET || "rahasia_super",
+  { expiresIn: "8h" }
+);
+
 
     res.json({
       message: "Login berhasil!",
