@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        const res = await fetch("http://localhost:3000/api/admin/produk", {
+        const res = await fetch("https://web-hampers-production.up.railway.app/api/admin/produk", {
           method: "POST",
           headers: { "Authorization": `Bearer ${getToken()}` },
           body: fd,
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const wrap = document.getElementById("riwayatContainer");
     wrap.innerHTML = '<p class="small">Memuat riwayat pesanan...</p>';
     try {
-      const res = await fetch("http://localhost:3000/api/admin/riwayat", { 
+      const res = await fetch("https://web-hampers-production.up.railway.app/api/admin/riwayat", { 
         headers: { Authorization: `Bearer ${getToken()}` } 
       });
       const rows = await res.json();
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const wrap = document.getElementById("pesananContainer");
   wrap.innerHTML = '<p class="small">Memuat pesanan masuk...</p>';
   try {
-    const res = await fetch("http://localhost:3000/api/admin/pesanan-masuk", { 
+    const res = await fetch("https://web-hampers-production.up.railway.app/api/admin/pesanan-masuk", { 
       headers: { Authorization: `Bearer ${getToken()}` } 
     });
     const rows = await res.json();
@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const id = e.target.dataset.id;
       if (!confirm('Proses pesanan #' + id + '?')) return;
       try {
-        const res2 = await fetch(`http://localhost:3000/api/admin/pesanan/${id}/proses`, {
+        const res2 = await fetch(`https://web-hampers-production.up.railway.app/api/admin/pesanan/${id}/proses`, {
           method: 'PUT',
           headers: { Authorization: `Bearer ${getToken()}` }
         });
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const wrap = document.getElementById("pelangganContainer");
     wrap.innerHTML = '<p class="small">Memuat data pelanggan...</p>';
     try {
-      const res = await fetch("http://localhost:3000/api/admin/pelanggan", { 
+      const res = await fetch("https://web-hampers-production.up.railway.app/api/admin/pelanggan", { 
         headers: { Authorization: `Bearer ${getToken()}` } 
       });
       const rows = await res.json();

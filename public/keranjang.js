@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function loadKeranjang() {
         keranjangList.innerHTML = "<p>Memuat keranjang...</p>";
         try {
-            const res = await fetch("http://localhost:3000/api/keranjang", {
+            const res = await fetch("https://web-hampers-production.up.railway.app/api/keranjang", {
                 headers: { "Authorization": `Bearer ${token}` }
             });
             if (!res.ok) throw new Error("Gagal mengambil data keranjang");
@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const card = document.createElement("div");
                 card.className = "card";
                 card.innerHTML = `
-                    <img src="http://localhost:3000/uploads/${item.foto_item}" alt="${item.nama_item}">
+                    <img src="https://web-hampers-production.up.railway.app/uploads/${item.foto_item}" alt="${item.nama_item}">
                     <h3>${item.nama_item}</h3>
                     <p>Jumlah: ${item.jumlah}</p>
                     <p>Harga: Rp ${item.harga_satuan.toLocaleString('id-ID')}</p>
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const id = e.target.dataset.id;
                     if (!confirm("Yakin ingin menghapus barang ini?")) return;
                     try {
-                        const res2 = await fetch(`http://localhost:3000/api/keranjang/${id}`, {
+                        const res2 = await fetch(`https://web-hampers-production.up.railway.app/api/keranjang/${id}`, {
                             method: "DELETE",
                             headers: { "Authorization": `Bearer ${token}` }
                         });
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         data.total_amount = totalHarga;
 
         try {
-            const res = await fetch("http://localhost:3000/api/checkout", {
+            const res = await fetch("https://web-hampers-production.up.railway.app/api/checkout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
