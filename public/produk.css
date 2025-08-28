@@ -157,3 +157,57 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Modal Pembayaran */
+.modal {
+  display: none; /* default hidden */
+  position: fixed;
+  z-index: 9999; /* pastikan di atas semua */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.5); /* background gelap transparan */
+}
+
+.modal-content {
+  background: #fff;
+  margin: 10% auto; /* center */
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 90%;
+}
+
+.modal-content h2 { text-align:center; }
+.modal-content label { display:block; margin-top:10px; }
+.modal-content input, .modal-content textarea, .modal-content select {
+  width:100%; padding:8px; margin-top:5px; border:1px solid #ccc; border-radius:5px;
+}
+
+.modal-content button {
+  margin-top:15px;
+  width:100%;
+  padding:10px;
+  background:#FF69B4;
+  color:white;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+}
+
+.modal-content .close {
+  position:absolute;
+  right:10px; top:10px;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.modal .close {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}

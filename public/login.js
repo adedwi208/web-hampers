@@ -1,68 +1,105 @@
+// login.js
 const loginForm = document.getElementById('loginForm');
 const registerForm = document.getElementById('registerForm');
 const showRegisterLink = document.getElementById('showRegister');
 const showLoginLink = document.getElementById('showLogin');
 
-// show/hide form
-loginForm.style.display = 'block';
-registerForm.style.display = 'none';
-
-showRegisterLink.addEventListener('click', (e) => {
-  e.preventDefault();
-  loginForm.style.display = 'none';
-  registerForm.style.display = 'block';
-});
-
-showLoginLink.addEventListener('click', (e) => {
-  e.preventDefault();
-  registerForm.style.display = 'none';
+if (loginForm && registerForm) {
+  // Toggle form
   loginForm.style.display = 'block';
-});
+  registerForm.style.display = 'none';
 
-// 👉 Login
-loginForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  const email = document.getElementById('loginEmail').value.trim();
-  const password = document.getElementById('loginPassword').value.trim();
-
-  if (email === "" || password === "") {
-    alert("Email dan password wajib diisi!");
-    return;
+  if (showRegisterLink) {
+    showRegisterLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+    });
   }
 
-  try {
-    const res = await fetch("http://localhost:3000/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
+  if (showLoginLink) {
+    showLoginLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      registerForm.style.display = 'none';
+      loginForm.style.display = 'block';
     });
+  }
 
-    const data = await res.json();
+  // Event listener untuk LOGIN
+  loginForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value.trim();
 
-    if (res.ok) {
-      alert("Login berhasil!");
+    if (email === "" || password === "") {
+      alert("Email dan password wajib diisi!");
+      return;
+    }
 
-      // simpan token & user
-      localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+    try {
+      const res = await fetch("http://localhost:3000/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password })
+      });
 
-      // 🔥 cek role
-      if (data.user.role === "admin") {
-        window.location.href = "admin.html";
-      } else if (data.user.role === "peminjam") {
-        window.location.href = "peminjam.html";
-      } else if (data.user.role === "penyedia") {
-        window.location.href = "penyedia.html";
-      } else {
-        window.location.href = "produk.html"; // fallback
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.message || "Login gagal!");
+        return;
       }
 
-    } else {
-      alert(data.message || "Login gagal!");
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      alert("Login berhasil!");
+
+      if (data.user.role === "admin") {
+        window.location.href = "admin.html";
+      } else {
+        window.location.href = "produk.html";
+      }
+
+    } catch (err) {
+      console.error("Login error:", err);
+      alert("Terjadi kesalahan koneksi ke server!");
     }
-  } catch (err) {
-    console.error(err);
-    alert("Terjadi kesalahan koneksi!");
-  }
-});
+  });
+
+  // ✅ BARU: Event listener untuk REGISTER
+  registerForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const nama_lengkap = document.getElementById('registerName').value.trim();
+    const nomor_hp = document.getElementById('registerPhone').value.trim();
+    const email = document.getElementById('registerEmail').value.trim();
+    const password = document.getElementById('registerPassword').value.trim();
+
+    if (!nama_lengkap || !nomor_hp || !email || !password) {
+      alert("Semua field wajib diisi!");
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:3000/api/auth/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nama_lengkap, nomor_hp, email, password })
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        alert(data.message || "Registrasi gagal!");
+        return;
+      }
+
+      alert(data.message);
+      // Pindah kembali ke form login setelah pendaftaran berhasil
+      loginForm.style.display = 'block';
+      registerForm.style.display = 'none';
+
+    } catch (err) {
+      console.error("Registrasi error:", err);
+      alert("Terjadi kesalahan koneksi ke server!");
+    }
+  });
+}

@@ -1,288 +1,124 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Halaman Admin</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', Arial, sans-serif;
-        }
-
-        body {
-            display: flex;
-            min-height: 100vh;
-            background: #f0f2f5;
-        }
-
-        /* Sidebar */
-        .sidebar {
-            width: 250px;
-            background: #ffffff;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            padding: 20px;
-            position: fixed;
-            height: 100%;
-            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-        }
-
-        .sidebar h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 1.6em;
-            color: #FF69B4;
-            font-weight: 700;
-        }
-
-        .sidebar a {
-            padding: 15px 20px;
-            color: #555;
-            text-decoration: none;
-            display: block;
-            border-radius: 8px;
-            transition: background 0.3s, color 0.3s;
-        }
-
-        .sidebar a:hover {
-            background: #FFB6C1;
-            color: #333;
-        }
-
-        .sidebar a.active {
-            background: #FF69B4;
-            color: #fff;
-            font-weight: bold;
-        }
-
-        /* Main Content */
-        .content {
-            margin-left: 250px;
-            flex: 1;
-            padding: 40px;
-        }
-
-        .content h1 {
-            margin-bottom: 30px;
-            font-size: 2em;
-            color: #2c3e50;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-        }
-
-        .card-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-        }
-
-        .card {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-        }
-
-        .card h2 {
-            margin-bottom: 10px;
-            color: #FF69B4;
-            font-size: 1.5em;
-        }
-
-        .card p {
-            color: #777;
-        }
-
-        .logout {
-            margin-top: auto;
-            text-align: center;
-            padding-top: 20px;
-        }
-
-        .logout a {
-            background: #C82828;
-            padding: 12px 25px;
-            border-radius: 30px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        .logout a:hover {
-            background: #b71c1c;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-            }
-            .sidebar {
-                position: relative;
-                width: 100%;
-                height: auto;
-                flex-direction: row;
-                justify-content: space-around;
-                padding: 10px;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            }
-            .sidebar h2 {
-                display: none;
-            }
-            .sidebar a {
-                padding: 10px;
-                flex: 1;
-                text-align: center;
-            }
-            .content {
-                margin-left: 0;
-                margin-top: 20px;
-                padding: 20px;
-            }
-            .logout {
-                display: none;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
     <div class="sidebar">
-    <h2>Admin Panel</h2>
-    <a href="#" class="menu-link active" data-target="dashboard">Dashboard</a>
-    <a href="#" class="menu-link" data-target="riwayat">Riwayat Pesanan</a>
-    <a href="#" class="menu-link" data-target="pesanan">Pesanan Masuk</a>
-    <a href="#" class="menu-link" data-target="tambah">Tambah Barang</a>
-    <a href="#" class="menu-link" data-target="pelanggan">Data Pelanggan</a>
-    <div class="logout">
-        <a href="home.html">Logout</a>
-    </div>
-</div>
-
-<div class="content">
-    <!-- Section Dashboard -->
-    <section id="dashboard" class="section">
-        <h1>Dashboard Admin</h1>
-        <div class="card-container">
-            <div class="card"><h2>Riwayat Pesanan</h2><p>Melihat daftar pesanan yang sudah diproses.</p></div>
-            <div class="card"><h2>Pesanan Masuk</h2><p>Daftar pesanan yang baru diterima.</p></div>
-            <div class="card"><h2>Tambah Barang</h2><p>Menambahkan produk baru ke sistem.</p></div>
-            <div class="card"><h2>Data Pelanggan</h2><p>Melihat dan mengelola informasi pelanggan.</p></div>
+        <h2>Admin Panel</h2>
+        <a href="#" class="menu-link active" data-target="dashboard">Dashboard</a>
+        <a href="#" class="menu-link" data-target="riwayat">Riwayat Pesanan</a>
+        <a href="#" class="menu-link" data-target="pesanan">Pesanan Masuk</a>
+        <a href="#" class="menu-link" data-target="tambah">Tambah Barang</a>
+        <a href="#" class="menu-link" data-target="pelanggan">Data Pelanggan</a>
+        <div class="logout">
+            <a href="home.html">Logout</a>
         </div>
-    </section>
+    </div>
 
-    <!-- Section Riwayat Pesanan -->
-    <section id="riwayat" class="section" style="display:none;">
-        <h1>Riwayat Pesanan</h1>
-        <p>📌 Di sini nanti tampil tabel riwayat pesanan dari backend.</p>
-    </section>
+    <div class="content">
+        <!-- Dashboard -->
+        <section id="dashboard" class="section">
+            <h1>Dashboard Admin</h1>
+            <div class="card-container">
+                <div class="card">
+                    <h2>Riwayat Pesanan</h2>
+                    <p>Melihat daftar pesanan yang sudah diproses.</p>
+                </div>
+                <div class="card">
+                    <h2>Pesanan Masuk</h2>
+                    <p>Daftar pesanan yang baru diterima.</p>
+                </div>
+                <div class="card">
+                    <h2>Tambah Barang</h2>
+                    <p>Menambahkan produk baru ke sistem.</p>
+                </div>
+                <div class="card">
+                    <h2>Data Pelanggan</h2>
+                    <p>Melihat dan mengelola informasi pelanggan.</p>
+                </div>
+            </div>
+        </section>
 
-    <!-- Section Pesanan Masuk -->
-    <section id="pesanan" class="section" style="display:none;">
-        <h1>Pesanan Masuk</h1>
-        <p>📌 Di sini nanti tampil pesanan pending yang baru masuk.</p>
-    </section>
+        <!-- Riwayat Pesanan -->
+        <section id="riwayat" class="section hidden">
+            <h1>Riwayat Pesanan</h1>
+            <div id="riwayatContainer">
+                <p class="small">Memuat riwayat pesanan...</p>
+            </div>
+        </section>
 
-    <!-- Section Tambah Barang -->
-    <section id="tambah" class="section" style="display:none;">
-        <h1>Tambah Produk</h1>
-        <form id="formProduk">
-            <input type="text" id="nama" placeholder="Nama Produk" required>
-            <textarea id="deskripsi" placeholder="Deskripsi"></textarea>
-            <input type="number" id="harga" placeholder="Harga" required>
+        <!-- Pesanan Masuk -->
+        <section id="pesanan" class="section hidden">
+            <h1>Pesanan Masuk</h1>
+            <div id="pesananContainer">
+                <p class="small">Memuat pesanan masuk...</p>
+            </div>
+        </section>
 
-            <label>Pilih Varian:</label><br>
-            <input type="checkbox" name="varian" value="ukuran_baju"> Ukuran Baju (S,M,L,XL)<br>
-            <input type="checkbox" name="varian" value="ukuran_sepatu"> Ukuran Sepatu (39,40,41,42..)<br>
-            <input type="checkbox" name="varian" value="warna"> Warna<br><br>
+        <!-- Tambah Barang -->
+        <section id="tambah" class="section hidden">
+    <h1>Tambah Barang</h1>
+    <form id="tambahBarangForm" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="kategori">Kategori</label>
+            <select id="kategori" name="kategori" required>
+                <option value="produk">Produk</option>
+                <option value="kemasan">Kemasan</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="nama">Nama</label>
+            <input type="text" id="nama" name="nama" required>
+        </div>
+        <div class="form-group">
+            <label for="deskripsi">Deskripsi</label>
+            <textarea id="deskripsi" name="deskripsi"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="harga">Harga</label>
+            <input type="number" id="harga" name="harga" required>
+        </div>
+        <div class="form-group">
+        <label for="foto">Foto</label>
+        <input type="file" id="foto" name="foto" required>
+        <div id="previewWrap" class="hidden">
+            <img id="previewImg" src="" alt="Pratinjau Foto" style="max-width: 200px; margin-top: 10px;">
+        </div>
+        </div>
 
-            <button type="submit">Tambah Produk</button>
-        </form>
-    </section>
+        <div id="varian-group" class="form-group">
+            <label>Varian</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="ukuran_baju" name="varian" value="ukuran_baju">
+                <label for="ukuran_baju">Ukuran Baju</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="ukuran_sepatu" name="varian" value="ukuran_sepatu">
+                <label for="ukuran_sepatu">Ukuran Sepatu</label>
+            </div>
+            <div class="checkbox-group">
+                <input type="checkbox" id="warna" name="varian" value="warna">
+                <label for="warna">Warna</label>
+            </div>
+        </div>
 
-    <!-- Section Data Pelanggan -->
-    <section id="pelanggan" class="section" style="display:none;">
-        <h1>Data Pelanggan</h1>
-        <p>📌 Di sini nanti tampil daftar pelanggan dari backend.</p>
-    </section>
-</div>
+        <button type="submit">Tambah Barang</button>
+    </form>
+</section>
 
-<script>
-// 🔒 Proteksi admin
-document.addEventListener("DOMContentLoaded", () => {
-  const user = JSON.parse(localStorage.getItem("user"));
-  if (!user) {
-    alert("Silakan login terlebih dahulu!");
-    window.location.href = "login.html";
-    return;
-  }
-  if (user.role !== "admin") {
-    alert("Anda tidak memiliki akses ke halaman admin!");
-    window.location.href = "produk.html";
-    return;
-  }
-  console.log("✅ Admin terverifikasi:", user.email);
-});
+        <!-- Data Pelanggan -->
+        <section id="pelanggan" class="section hidden">
+            <h1>Data Pelanggan</h1>
+            <div id="pelangganContainer">
+                <p class="small">Memuat data pelanggan...</p>
+            </div>
+        </section>
+    </div>
 
-// 🎯 Ganti konten berdasarkan menu sidebar
-document.querySelectorAll(".menu-link").forEach(link => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    // hapus active semua menu
-    document.querySelectorAll(".menu-link").forEach(l => l.classList.remove("active"));
-    link.classList.add("active");
-
-    // sembunyikan semua section
-    document.querySelectorAll(".section").forEach(sec => sec.style.display = "none");
-
-    // tampilkan section target
-    const target = link.getAttribute("data-target");
-    document.getElementById(target).style.display = "block";
-  });
-});
-
-// 🎯 Handle tambah produk
-document.getElementById("formProduk").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const nama = document.getElementById("nama").value;
-  const deskripsi = document.getElementById("deskripsi").value;
-  const harga = document.getElementById("harga").value;
-  const checked = [...document.querySelectorAll('input[name="varian"]:checked')].map(c => c.value);
-
-  let varian = [];
-  if (checked.includes("ukuran_baju")) ["S","M","L","XL"].forEach(v => varian.push({ jenis:"ukuran_baju", nilai:v }));
-  if (checked.includes("ukuran_sepatu")) ["39","40","41","42","43","44"].forEach(v => varian.push({ jenis:"ukuran_sepatu", nilai:v }));
-  if (checked.includes("warna")) ["Hitam","Putih","Merah","Biru"].forEach(v => varian.push({ jenis:"warna", nilai:v }));
-
-  try {
-    const res = await fetch("http://localhost:3000/api/admin/produk", {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify({ nama, deskripsi, harga, varian })
-    });
-    const data = await res.json();
-    alert(data.message);
-    document.getElementById("formProduk").reset();
-  } catch (err) {
-    console.error(err);
-    alert("Gagal menambahkan produk!");
-  }
-});
-</script>
-
-
+    <script src="admin.js"></script>
 </body>
 </html>

@@ -8,7 +8,6 @@
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Header -->
   <header class="navbar">
     <a href="produk.html" class="logo">Hampers Direl's</a>
     <div class="nav-icons">
@@ -17,24 +16,22 @@
     </div>
   </header>
 
-  <!-- Konten Profil -->
   <main class="content">
     <h1>Profil Saya</h1>
     <div class="produk-list">
       <div class="card">
-        <h3>Nama: Ade Dwi Herdiansyah</h3>
-        <p>Email: ade@example.com</p>
-        <p>No HP: 0812-xxxx-xxxx</p>
+        <h3>Nama: <span id="profilNama"></span></h3>
+        <p>Email: <span id="profilEmail"></span></p>
+        <p>No HP: <span id="profilNomorHp"></span></p>
         <div style="margin-top:20px;">
-          <a href="riwayat.html">
-            <button>Lihat Riwayat Pesanan</button>
-          </a>
-          <a href="home.html" onclick="alert('Anda berhasil logout!')">
-            <button style="background:#FF69B4;">Logout</button>
+          <a href="home.html">
+            <button>Logout</button>
           </a>
         </div>
       </div>
     </div>
   </main>
+
+  <script src="profil.js"></script>
 </body>
 </html>
