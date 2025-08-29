@@ -92,11 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = new FormData(checkoutForm);
         const data = Object.fromEntries(formData.entries());
         data.total_amount = totalHarga;
-
+            console.log("Token yg dikirim:", token);
         try {
             const res = await fetch("/api/checkout", {
                 method: "POST",
                 headers: {
+                    
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "application/json"
                     
