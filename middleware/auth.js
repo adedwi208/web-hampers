@@ -9,6 +9,7 @@ exports.verifyToken = (req, res, next) => {
   const token = authHeader.startsWith('Bearer ') ? authHeader.split(' ')[1] : authHeader;
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log("JWT Error:", err);
     req.user = decoded;
     next();
   } catch (err) {
