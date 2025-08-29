@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }).format(item.harga);
 
         card.innerHTML = `
-          <img src="https://web-hampers-production.up.railway.app/uploads/${item.foto}" alt="${item.nama}">
+          <img src="/uploads/${item.foto}" alt="${item.nama}">
           <h3>${item.nama}</h3>
           <p>${item.deskripsi}</p>
           <p class="price">Harga: ${hargaFormatted}</p>
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function tambahKeKeranjang(itemId, kategori) {
         try {
-            const res = await fetch("https://web-hampers-production.up.railway.app/api/keranjang", {
+            const res = await fetch("/api/keranjang", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function fetchProduk() {
         produkList.innerHTML = "<p>Memuat produk...</p>";
         try {
-            const res = await fetch("https://web-hampers-production.up.railway.app/api/produk", {
+            const res = await fetch("/api/produk", {
                 headers: { "Authorization": `Bearer ${token}` }
             });
             if (!res.ok) {
@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     async function fetchKemasan() {
         kemasanList.innerHTML = "<p>Memuat kemasan...</p>";
         try {
-            const res = await fetch("https://web-hampers-production.up.railway.app/api/produk/kemasan", {
+            const res = await fetch("/api/produk/kemasan", {
                 headers: { "Authorization": `Bearer ${token}` }
             });
             if (!res.ok) {
