@@ -9,10 +9,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let totalHarga = 0;
 
+
+    // fetch.js
+    async function fetch(url, options = {}) {
+        const token = localStorage.getItem("token");
+        options.headers = {
+            ...(options.headers || {}),
+            "Authorization": `Bearer ${token}`
+        };
+        return fetch(url, options);
+    }
+
+
     async function loadKeranjang() {
         keranjangList.innerHTML = "<p>Memuat keranjang...</p>";
         try {
-            const res = await authFetch("https://web-hampers-production.up.railway.app/api/keranjang", {
+            const res = await fetch("https://web-hampers-production.up.railway.app/api/keranjang", {
                 headers: { "Authorization": `Bearer ${token}` }
             });
             if (!res.ok) throw new Error("Gagal mengambil data keranjang");
@@ -48,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const id = e.target.dataset.id;
                     if (!confirm("Yakin ingin menghapus barang ini?")) return;
                     try {
-                        const res2 = await authFetch(`https://web-hampers-production.up.railway.app/api/keranjang/${id}`, {
+                        const res2 = await fetch(`https://web-hampers-production.up.railway.app/api/keranjang/${id}`, {
                             method: "DELETE",
                             headers: { "Authorization": `Bearer ${token}` }
                         });
@@ -94,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
         data.total_amount = totalHarga;
 
         try {
-            const res = await authFetch("https://web-hampers-production.up.railway.app/api/checkout", {
+            const res = await fetch("https://web-hampers-production.up.railway.app/api/checkout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
