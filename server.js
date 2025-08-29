@@ -37,6 +37,9 @@ app.get("/", (req, res) => {
 // test API
 app.get("/api/health", (req, res) => res.json({ ok: true }));
 
+console.log("🚀 Server dimulai, JWT_SECRET:", process.env.JWT_SECRET);
+
+
 app.listen(PORT, () => {
   console.log(`Server running on ${PORT}`);
 });

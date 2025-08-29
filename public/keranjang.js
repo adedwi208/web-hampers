@@ -11,9 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function loadKeranjang() {
         keranjangList.innerHTML = "<p>Memuat keranjang...</p>";
+        console.log("Token di frontend:", token)
         try {
             const res = await fetch("/api/keranjang", {
                 headers: { "Authorization": `Bearer ${token}` }
+                
             });
             if (!res.ok) throw new Error("Gagal mengambil data keranjang");
             const cartItems = await res.json();
