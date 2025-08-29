@@ -9,24 +9,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let totalHarga = 0;
 
-
-    // fetch.js
-    async function fetch(url, options = {}) {
+    // ✅ Fix: jangan override fetch bawaan → gunakan window.fetch
+    async function fetchWithAuth(url, options = {}) {
         const token = localStorage.getItem("token");
         options.headers = {
             ...(options.headers || {}),
             "Authorization": `Bearer ${token}`
         };
-        return fetch(url, options);
+        return window.fetch(url, options); // <-- fetch asli
     }
-
 
     async function loadKeranjang() {
         keranjangList.innerHTML = "<p>Memuat keranjang...</p>";
         try {
-            const res = await fetch("https://web-hampers-production.up.railway.app/api/keranjang", {
-                headers: { "Authorization": `Bearer ${token}` }
-            });
+            const res = await fetchWithAuth("https://web-hampers-production.up.railway.app/api/keranjang");
             if (!res.ok) throw new Error("Gagal mengambil data keranjang");
             const cartItems = await res.json();
 
@@ -60,9 +56,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     const id = e.target.dataset.id;
                     if (!confirm("Yakin ingin menghapus barang ini?")) return;
                     try {
-                        const res2 = await fetch(`https://web-hampers-production.up.railway.app/api/keranjang/${id}`, {
-                            method: "DELETE",
-                            headers: { "Authorization": `Bearer ${token}` }
+                        const res2 = await fetchWithAuth(`https://web-hampers-production.up.railway.app/api/keranjang/${id}`, {
+                            method: "DELETE"
                         });
                         if (!res2.ok) throw new Error("Gagal menghapus.");
                         alert("Barang berhasil dihapus!");
@@ -79,18 +74,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // ✅ Tambahan: tombol Checkout buka modal
+    // ✅ Tombol Checkout buka modal
     checkoutBtn.addEventListener("click", () => {
         if (totalHarga <= 0) {
-        alert("Keranjang Anda kosong. Tidak bisa checkout!");
-        return;
-    }
+            alert("Keranjang Anda kosong. Tidak bisa checkout!");
+            return;
+        }
         checkoutForm.reset();
         checkoutForm.order_id.value = 'ORD' + Date.now();
         modal.style.display = "block";
     });
 
-    // ✅ Tambahan: tombol close modal & klik luar modal
+    // ✅ Tombol close modal & klik luar modal
     if (closeModal) {
         closeModal.addEventListener("click", () => modal.style.display = "none");
     }
@@ -98,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (e.target === modal) modal.style.display = "none";
     });
 
-    // Submit form checkout
+    // ✅ Submit form checkout
     checkoutForm.addEventListener("submit", async (e) => {
         e.preventDefault();
         const formData = new FormData(checkoutForm);
@@ -106,12 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
         data.total_amount = totalHarga;
 
         try {
-            const res = await fetch("https://web-hampers-production.up.railway.app/api/checkout", {
+            const res = await fetchWithAuth("https://web-hampers-production.up.railway.app/api/checkout", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
             });
             const result = await res.json();
